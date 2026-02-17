@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login - Movitel 4.5G</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #d40000, #ffcc00);
+}
+
+/* Cartão */
+.login-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  text-align: center;
+  border-top: 6px solid #ffcc00;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.signal {
+  width: 40px;
+  height: 40px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  color: #d40000;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+label {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d40000;
+  box-shadow: 0 0 0 2px rgba(212,0,0,0.2);
+}
+
+/* Botão */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d40000, #ff0000);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(212,0,0,0.35);
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+  <div class="logo">
+    <svg class="signal" viewBox="0 0 64 64">
+      <rect x="6" y="36" width="8" height="22" rx="2" fill="#d40000"/>
+      <rect x="20" y="28" width="8" height="30" rx="2" fill="#d40000"/>
+      <rect x="34" y="18" width="8" height="40" rx="2" fill="#d40000"/>
+      <rect x="48" y="8" width="8" height="50" rx="2" fill="#d40000"/>
+    </svg>
+    <div>
+      <h1>Movitel</h1>
+      <div class="subtitle">Rede 4.5G</div>
+    </div>
+  </div>
+
+  <form action="Movitel.html" method="post" onsubmit="return validarNumero()">
+
+    <div class="input-group">
+      <label for="username">Nome</label>
+      <input type="text" id="username" placeholder="Digite o seu Nome" required />
+    </div>
+
+    <div class="input-group">
+      <label for="number">Número Movitel</label>
+      <input 
+        type="text" 
+        id="number"
+        placeholder="Ex: 866147996"
+        pattern="(86|87)[0-9]{7}"
+        maxlength="9"
+        inputmode="numeric"
+        required
+      />
+    </div>
+
+    <button type="submit" class="login-btn">Entrar</button>
+  </form>
+
+  <div class="footer">
+    © 2026 Marcelo de Flavio
+  </div>
+
+</div>
+
+<script>
+function validarNumero() {
+  const numero = document.getElementById("number").value;
+
+  // Verifica se tem exatamente 9 dígitos
+  if (numero.length !== 9) {
+    alert("O número deve ter exatamente 9 dígitos.");
+    return false;
+  }
+
+  // Verifica se começa com 86 ou 87
+  if (!numero.startsWith("86") && !numero.startsWith("87")) {
+    alert("Introduza um número Movitel válido (deve começar com 86 ou 87).");
+    return false;
+  }
+
+  // Verifica se contém apenas números
+  if (!/^\d+$/.test(numero)) {
+    alert("O número deve conter apenas dígitos.");
+    return false;
+  }
+
+  return true;
+}
+</script>
+
+</body>
+</html>
+
+    
+    
+    
+    
+    
+    
